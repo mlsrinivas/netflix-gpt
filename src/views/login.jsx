@@ -79,7 +79,7 @@ const Login = () => {
                 <Header />
             </Grid2>
             <Grid2 sx={{position: 'absolute', top: '20%', height: isLoginView ? 350 : 420, width: 400, backgroundColor: '#000', borderRadius: 5, padding: 3}}>
-                <Typography sx={{fontSize: 30, color: '#FFF', fontWeight: 'bold'}}>{isLoginView ? 'Sign In' : 'Sign Up'}</Typography>
+                <Typography sx={{fontSize: 30, color: '#FFF', fontWeight: 'bold'}}>{isLoginView ? 'tttSign In' : 'tttSign Up'}</Typography>
                 {!isLoginView &&
                     <input 
                         type="text" 
