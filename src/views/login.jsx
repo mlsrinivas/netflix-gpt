@@ -104,7 +104,7 @@ const Login = () => {
                 />
                 <Typography sx={{color:'red', marginTop: 3, fontSize: 14}}>{errors}</Typography>
                 <Button onClick={handleSubmit} sx={{height: 40, width: '90%', borderRadius: 3, border:'1px solid red', alignSelf:'center', marginTop: 1, cursor: 'pointer'}}>
-                    <Typography sx={{color:'#FFF'}}>{isLoginView ? 'Login' : 'Register'}</Typography>
+                    <Typography sx={{color:'#FFF'}}>{isLoginView ? 'tttLogin' : 'tttRegister'}</Typography>
                 </Button>
                 
                 <Grid2 sx={{marginTop: 2}}>
