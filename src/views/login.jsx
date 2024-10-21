@@ -79,7 +79,7 @@ const Login = () => {
                 <Header />
             </Grid2>
             <Grid2 sx={{position: 'absolute', top: '20%', height: isLoginView ? 350 : 420, width: 400, backgroundColor: '#000', borderRadius: 5, padding: 3}}>
-                <Typography sx={{fontSize: 30, color: '#FFF', fontWeight: 'bold'}}>{isLoginView ? 'tttSign In' : 'tttSign Up'}</Typography>
+                <Typography sx={{fontSize: 30, color: '#FFF', fontWeight: 'bold'}}>{isLoginView ? 'Sign In' : 'Sign Up'}</Typography>
                 {!isLoginView &&
                     <input 
                         type="text" 
@@ -104,7 +104,7 @@ const Login = () => {
                 />
                 <Typography sx={{color:'red', marginTop: 3, fontSize: 14}}>{errors}</Typography>
                 <Button onClick={handleSubmit} sx={{height: 40, width: '90%', borderRadius: 3, border:'1px solid red', alignSelf:'center', marginTop: 1, cursor: 'pointer'}}>
-                    <Typography sx={{color:'#FFF'}}>{isLoginView ? 'tttLogin' : 'tttRegister'}</Typography>
+                    <Typography sx={{color:'#FFF'}}>{isLoginView ? 'Login' : 'Register'}</Typography>
                 </Button>
                 
                 <Grid2 sx={{marginTop: 2}}>
