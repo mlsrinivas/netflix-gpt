@@ -10,6 +10,6 @@ export const LOGIN_BG_IMAGE = 'https://assets.nflxext.com/ffe/siteui/vlv3/f27278
 export const POSTER_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 export const gptClient = new OpenAI({
-  apiKey: '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',
+  apiKey: process.env.OPENAI_SECRET_KEY,
   dangerouslyAllowBrowser: true
 });
