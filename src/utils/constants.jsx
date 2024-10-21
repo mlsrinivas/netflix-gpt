@@ -10,6 +10,6 @@ export const LOGIN_BG_IMAGE = 'https://assets.nflxext.com/ffe/siteui/vlv3/f27278
 export const POSTER_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 export const gptClient = new OpenAI({
-  apiKey: process.env.OPENAI_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_KEY,
   dangerouslyAllowBrowser: true
 });
