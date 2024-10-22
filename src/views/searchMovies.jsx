@@ -1,6 +1,6 @@
 import { Button, Grid2, Typography } from '@mui/material'
 import React, { useMemo, useRef, useState } from 'react'
-import { gptClient, LOGIN_BG_IMAGE } from '../utils/constants'
+import { genAiModel, gptClient, LOGIN_BG_IMAGE } from '../utils/constants'
 import { APP_URL } from '../redux/url';
 import { fetchClearMovieSearch, fetchMovieBySearch } from '../redux/reducers/dashboardReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ const SearchMovies = () => {
         {id: 2, title: 'Horror romantic hollywood movies'},
         {id: 3, title: 'Action tollywood movies'},
         {id: 4, title: 'Si-fic indian movies'},
-        {id: 5, title: 'Thriller bollywood movies'},
+        {id: 5, title: 'Thriller malayalam movies'},
     ]
 
     console.log(getMovieByGpt, 'getMovieByGptgetMovieByGptgetMovieByGpt')
@@ -34,27 +34,29 @@ const SearchMovies = () => {
     console.log(parseMovieList, 'parseMovieListparseMovieList')
 
     const fetchMovieList = async(movie) => {
+        console.log(movie, 'moviemoviemovie')
         const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, APP_URL)
         const json = await data.json();
         return json.results;
     }
 
-    const handleSearchBtn = async() => {
+    const handleSearchBtn = async(searchText) => {
         const exampleMovieList = ['Chupke Chupke', 'Hera Pheri', 'Andaz Apna Apna', '3 Idiots', 'Golmaal'];
-
         try{
-            // const promt = `Act like a movie suggestion, based on ${setSearchText} and give me the top five results of movie names in an array. Example: ${exampleMovieList}`
+            let gptSuggetedList = [];
+            const prompt = `Act like a movie suggestion, i want ${searchText} and give me the top five results of movie names in an array format, i need only movie names same as the example format, dont give other text. Example: ${exampleMovieList}`
             // const gptResult = await gptClient.chat.completions.create({
             //     messages: [{ 
             //         role: 'user', 
             //         content: text ,
-            //         prompt: promt
+            //         prompt: prompt
             //     }],
             //     model: 'gpt-3.5-turbo',
             // });
             // console.log(gptResult, 'gptResult_gptResult')
-
-            const _gptResult = exampleMovieList.map((movie) => fetchMovieList(movie))
+            const result = await genAiModel.generateContent(prompt);
+            gptSuggetedList = JSON.parse(result?.response?.text())
+            const _gptResult = gptSuggetedList?.map((movie) => fetchMovieList(movie))
             const data = await Promise.all(_gptResult)
             dispatch(fetchMovieBySearch(data))
 
@@ -78,7 +80,7 @@ const SearchMovies = () => {
 
     const handleClickSuggestion = (text) => {
         setSearchText(text)
-        handleSearchBtn()
+        handleSearchBtn(text)
     }
 
     return (
