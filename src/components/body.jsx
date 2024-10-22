@@ -1,10 +1,12 @@
 import { Button, Grid2, Typography } from "@mui/material";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import BasicModal from "./modal";
 
 const Body = () => {
 
     const {nowPlayingData, movieTrailer} = useSelector(state => state.dashboard);
+    const [showMovieModal, setShowMovieModal] = useState(false);
 
     const key = useMemo(() => {
         // if(movieTrailer != undefined) return movieTrailer[7]?.key;
@@ -69,7 +71,7 @@ const Body = () => {
                 marginLeft: 0,
                 }}
             >
-                <Typography sx={{ color: "#FFF", fontSize: 16 }}>► Play</Typography>
+                <Typography onClick={() => setShowMovieModal(true)} sx={{ color: "#FFF", fontSize: 16 }}>► Play</Typography>
             </Button>
             <Button
                 sx={{
@@ -85,6 +87,12 @@ const Body = () => {
                 </Typography>
             </Button>
             </Grid2>
+            {showMovieModal && 
+            <BasicModal
+                onOpen={showMovieModal}
+                onClose={() => setShowMovieModal(false)}
+                movieKey={'W2HXtyIYdfI'}
+            />}
         </Grid2>
         </Grid2>
     );

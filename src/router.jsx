@@ -1,22 +1,26 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./views/login";
-import Dashboard from "./views/dashboard";
+import Loader from "./components/loader";
+
+const LoginComponent = React.lazy(() => import('./views/login'));
+const DashboardComponent = React.lazy(() => import('./views/dashboard'));
 
 export const Navigations = () => {
   
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Login />
+            element: <LoginComponent />
         },
         {
             path: '/dashboard',
-            element: <Dashboard />,
+            element: <DashboardComponent />,
         }
     ])
 
     return(
-        <RouterProvider router={router}/>
+        <Suspense fallback={<Loader />}>
+            <RouterProvider router={router}/>
+        </Suspense>
     )
 }
-

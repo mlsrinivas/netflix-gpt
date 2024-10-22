@@ -15,7 +15,7 @@ const SearchMovies = () => {
     const dispatch = useDispatch();
 
     const movieSuggetions = [
-        {id: 1, title: 'Comedy indian movies'},
+        {id: 1, title: 'Best comedy movies in telugu'},
         {id: 2, title: 'Horror romantic hollywood movies'},
         {id: 3, title: 'Action tollywood movies'},
         {id: 4, title: 'Si-fic indian movies'},
@@ -34,7 +34,6 @@ const SearchMovies = () => {
     console.log(parseMovieList, 'parseMovieListparseMovieList')
 
     const fetchMovieList = async(movie) => {
-        console.log(movie, 'moviemoviemovie')
         const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, APP_URL)
         const json = await data.json();
         return json.results;
